@@ -17,8 +17,14 @@ phone.addEventListener('input', validationHandler);
 function validationHandler(event){
 	if(event.target.id == 'uname'){
 		//empty input
-		if(event.target.value.length == 0){
+		if(event.target.validity.valueMissing){
 			event.target.setCustomValidity("You must insert your username");
+			event.target.reportValidity();
+		}
+
+		//input doesnt follow the provided pattern
+		else if(event.target.validity.patternMismatch){
+			event.target.setCustomValidity("The username must contain a single letter followed by a dot, followed by three or more letters of numbers. Should be lowercase");
 			event.target.reportValidity();
 		}
 
@@ -35,14 +41,26 @@ function validationHandler(event){
 
 	else if(event.target.id == 'email'){
 		//empty input
-		if(event.target.value.length == 0){
+		if(event.target.validity.valueMissing){
 			event.target.setCustomValidity("You must insert your email");
 			event.target.reportValidity();
 		}
 
 		//input is not an email
 		else if(event.target.validity.typeMismatch){
-			event.target.setCustomValidity("You must be a valid email");
+			event.target.setCustomValidity("You must insert a valid email from @bigcorp.eu");
+			event.target.reportValidity();
+		}
+
+		//input is too short
+		else if(event.target.validity.tooShort){
+			event.target.setCustomValidity("The entered email address is too short");
+			event.target.reportValidity();
+		};
+
+		//input doesnt follow the provided pattern
+		else if(event.target.validity.patternMismatch){
+			event.target.setCustomValidity("Your email must consis of 1 or more letters, or numbers followed by @bigcorp.eu");
 			event.target.reportValidity();
 		}
 
@@ -52,15 +70,22 @@ function validationHandler(event){
 	}
 
 	else if(event.target.id == 'phone'){
+		console.log(event.target.validity)
 		//empty input
-		if(event.target.value.length == 0){
+		if(event.target.validity.valueMissing){
 			event.target.setCustomValidity("You must insert your phone number");
 			event.target.reportValidity();
 		}
 
-		//input is not a phone
+		//input doesnt follow the pattern
 		else if(event.target.validity.patternMismatch){
-			event.target.setCustomValidity("It must be a valid phone number");
+			event.target.setCustomValidity("Your phone number must contain either 10 digits in a row, or 3 digits followed by a space, a dash, or a dot, followed by another 3 digits, followed by a space, a dash, or a dot, followed by 4 digits");
+			event.target.reportValidity();
+		}
+
+		//input is too short
+		else if(event.target.validity.tooShort){
+			event.target.setCustomValidity("Your phone number must contains 10 digits");
 			event.target.reportValidity();
 		}
 
