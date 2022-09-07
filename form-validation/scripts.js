@@ -56,7 +56,7 @@ function validationHandler(event){
 		else if(event.target.validity.tooShort){
 			event.target.setCustomValidity("The entered email address is too short");
 			event.target.reportValidity();
-		};
+		}
 
 		//input doesnt follow the provided pattern
 		else if(event.target.validity.patternMismatch){

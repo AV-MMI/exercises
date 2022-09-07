@@ -1,0 +1,38 @@
+.container {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	grid-template-rows: 1fr 1fr 5fr 1fr;
+	gap: 15px;
+	height: 95vh;
+}
+
+.container > div {
+	border: 2px solid black;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header {
+	background-color: #F65A83;
+	grid-column: span 2;
+}
+
+.sidebar {
+	background-color: #FF87B2;
+	grid-row: span 2;
+}
+
+.nav {
+	background-color: #FFE898;
+}
+
+.article {
+	background-color: #D3CEDF;
+}
+
+.footer {
+	background-color: #F47C7C;
+	grid-column: span 2;
+}
